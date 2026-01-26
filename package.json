@@ -7,10 +7,7 @@
     "start": "node src/main.js",
     "dry-run": "node src/main.js --dry",
     "gui": "node gui-server.js",
-    "replay-errors": "node src/main.js --replay",
-    "postinstall": "chmod +x node_modules/.bin/playwright && node node_modules/playwright/cli.js install chromium-headless-shell"
-
-
+    "replay-errors": "node src/main.js --replay"
   },
   "keywords": [],
   "author": "",
