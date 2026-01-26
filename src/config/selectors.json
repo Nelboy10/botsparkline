@@ -1,0 +1,6 @@
+{
+  "menuLists": "text=Listes",
+  "targetListName": "text=PROSPECTION SANS M2",
+  "companyCard": "[class*='companyCard']",
+  "companyName": "span[class*='ul-name']"
+}

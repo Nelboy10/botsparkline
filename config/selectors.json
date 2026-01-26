@@ -1,0 +1,13 @@
+{
+  "menuLists": "text=Listes",
+  "targetListName": "text=PROSPECTION SANS M2",
+  "companyCard": "[class*='companyCard']",
+  "companyName": "span[class*='ul-name']",
+  "companyPageName": "h1",
+  "companyNumberLabel": "text=Numéro société",
+  "companyPhoneLabel": "div[class*='ml-phone']",
+  "companyAddress": "div[class*='ml-address']",
+  "contactRow": "tr[class*='ant-table-row']",
+  "contactName": "div[class*='_1-name']",
+  "contactTitle": "td[class*='functionLabel']"
+}

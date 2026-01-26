@@ -1,0 +1,100 @@
+[
+  {
+    "companyName": "SULZER POMPES FRANCE",
+    "companyNumber": "N/A",
+    "phone": "+33 1 34 77 72 00",
+    "address": "BUCHELAY - 78200",
+    "contacts": [
+      {
+        "name": "M. Bruno DE MIJOLLA",
+        "title": "Référant Technique"
+      }
+    ]
+  },
+  {
+    "companyName": "TRICOTS SAINT-JAMES",
+    "companyNumber": "N/A",
+    "phone": "+33233891570",
+    "address": "ST JAMES - 50240",
+    "contacts": [
+      {
+        "name": "M. Yannick LECONTE",
+        "title": "Directeur Technique"
+      },
+      {
+        "name": "Mme Stéphanie OUTREQUIN",
+        "title": "Assistante Technique"
+      }
+    ]
+  },
+  {
+    "companyName": "POLIECO FRANCE",
+    "companyNumber": "N/A",
+    "phone": "+33385239362",
+    "address": "FEILLENS - 01570",
+    "contacts": []
+  },
+  {
+    "companyName": "SICK",
+    "companyNumber": "N/A",
+    "phone": "+33820364656",
+    "address": "EMERAINVILLE - 77184",
+    "contacts": []
+  },
+  {
+    "companyName": "OLMIX",
+    "companyNumber": "N/A",
+    "phone": "+33 2 97 38 81 03",
+    "address": "BREHAN - 56580",
+    "contacts": []
+  },
+  {
+    "companyName": "ESTP - GRANDE ECOLE D INGENIEURS DE LA CONSTRUCTION",
+    "companyNumber": "N/A",
+    "phone": "+33149085650",
+    "address": "CACHAN - 94230",
+    "contacts": []
+  },
+  {
+    "companyName": "OSSABOIS",
+    "companyNumber": "N/A",
+    "phone": "+33477978333",
+    "address": "BALBIGNY - 42510",
+    "contacts": [
+      {
+        "name": "M. Jerome DELAITRE",
+        "title": "Referent Technique"
+      }
+    ]
+  },
+  {
+    "companyName": "SIEGFRIED ST VULBAS SAS",
+    "companyNumber": "N/A",
+    "phone": "+33 9 71 16 91 00",
+    "address": "ST VULBAS - 01150",
+    "contacts": []
+  },
+  {
+    "companyName": "SOPREMA",
+    "companyNumber": "N/A",
+    "phone": "+33388798479",
+    "address": "STRASBOURG - 67100",
+    "contacts": [
+      {
+        "name": "M. Ibai RODRIGUEZ",
+        "title": "Directeur Technique Etanchéité en Feuilles"
+      },
+      {
+        "name": "M. Abdenbi LAMRID",
+        "title": "Responsable Technique et Formation"
+      }
+    ]
+  },
+  {
+    "companyName": "ERGOSANTE",
+    "companyNumber": "N/A",
+    "phone": "+33 4 66 24 54 56",
+    "address": "ANDUZE - 30140",
+    "contacts": []
+  }
+]

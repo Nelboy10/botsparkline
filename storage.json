@@ -1,0 +1,117 @@
+{
+  "cookies": [
+    {
+      "name": "AUTH_SESSION_ID",
+      "value": "MWZiYTE1OWMtZGRlNy00MDM0LWIzYzUtNDQ0Y2M2NTk3NzY3LjJhVjVLbGYyc1l3enpuN1B3a0FCenBPUXdZTHVHY2MxVnNnZUh0QXE1d1hEYWJDT1dUMnJzVlNSZFVlT19vUEVzMUxkU1ZhdUhELWgtUzg5NkFWMGdR.auth-57f8b9dc6f-pp8f5-28572",
+      "domain": "auth.sparklane.fr",
+      "path": "/realms/sparklane/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KC_AUTH_SESSION_HASH",
+      "value": "\"OWwXEGmcBhIibhSezaKrTDkf4ZoDXP/juEGnHcoeSjw\"",
+      "domain": "auth.sparklane.fr",
+      "path": "/realms/sparklane/",
+      "expires": 1769324012.810051,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KEYCLOAK_LOCALE",
+      "value": "fr",
+      "domain": "auth.sparklane.fr",
+      "path": "/realms/sparklane/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KEYCLOAK_IDENTITY",
+      "value": "eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5NjE0OTU5Ny1hOWU4LTRlZjUtOWYyNC03ZjI3ZmQxMGZiNjMifQ.eyJleHAiOjE3Njk0MTAzOTMsImlhdCI6MTc2OTMyMzk5MywianRpIjoiMjcxYWFmMmYtZTAwNS0zYzc5LWM2ZjItYjY1YTk0MjUwMDYwIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnNwYXJrbGFuZS5mci9yZWFsbXMvc3BhcmtsYW5lIiwic3ViIjoiZjgxNTE5YjUtNTUxYS00YmJhLWFlOTItZWRkZTVjMWUyN2M1IiwidHlwIjoiU2VyaWFsaXplZC1JRCIsInNpZCI6IjFmYmExNTljLWRkZTctNDAzNC1iM2M1LTQ0NGNjNjU5Nzc2NyIsInN0YXRlX2NoZWNrZXIiOiJ0Qy1UQmFrWWdWeVB0Q0RYNTU1VVo1cGVNZzBZaUVJWmtwbFRIRWZXNFJrIn0.4Jt3uNkMRsCz7K61Q08kjQb1ezhBbMSmahSCxlzeepYcijYNfuUHbOLtcvPkolcKxO7X8bY46NXP0lLXcW-6hw",
+      "domain": "auth.sparklane.fr",
+      "path": "/realms/sparklane/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "KEYCLOAK_SESSION",
+      "value": "OWwXEGmcBhIibhSezaKrTDkf4ZoDXP_juEGnHcoeSjw",
+      "domain": "auth.sparklane.fr",
+      "path": "/realms/sparklane/",
+      "expires": 1769410394.503269,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "io",
+      "value": "0y0pYIsVoRCluKBfBrcv",
+      "domain": "predict.sparklane.fr",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "m",
+      "value": "b4c3e94d-9b33-4602-9479-f1b3eae881ea7d1e4f",
+      "domain": "m.stripe.com",
+      "path": "/",
+      "expires": 1803884002.225442,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__stripe_mid",
+      "value": "7eb2cc2f-2e38-47d3-ada4-40bf42d17063073fec",
+      "domain": ".predict.sparklane.fr",
+      "path": "/",
+      "expires": 1800860002,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "__stripe_sid",
+      "value": "4983518c-72ea-4418-838d-a2a772f03efbf4f8ba",
+      "domain": ".predict.sparklane.fr",
+      "path": "/",
+      "expires": 1769325802,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://predict.sparklane.fr",
+      "localStorage": [
+        {
+          "name": "ZD-suid",
+          "value": "{\"id\":\"6567cbc3420a4cce8f55f99ac6fd954a\",\"expiry\":1769324901480,\"tabs\":{\"count\":1,\"expiry\":0}}"
+        },
+        {
+          "name": "mp_c7de284f9f9558d70237da95028e37b6_mixpanel",
+          "value": "{\"distinct_id\":\"contact@ecoreno-france.fr\",\"$device_id\":\"1ae7b520-f45a-4b0d-a642-3129c142a145\",\"$initial_referrer\":\"$direct\",\"$initial_referring_domain\":\"$direct\",\"__mps\":{},\"__mpso\":{},\"__mpus\":{},\"__mpa\":{},\"__mpu\":{},\"__mpr\":[],\"__mpap\":[],\"$user_id\":\"contact@ecoreno-france.fr\"}"
+        },
+        {
+          "name": "__mpq_c7de284f9f9558d70237da95028e37b6_ev",
+          "value": "[]"
+        },
+        {
+          "name": "__mpq_c7de284f9f9558d70237da95028e37b6_pp",
+          "value": "[]"
+        }
+      ]
+    }
+  ]
+}

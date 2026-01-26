@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparklane Bot Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo">
+                <h1>Sparklane Bot</h1>
+            </div>
+            <div class="status-badge" id="botStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Prêt</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-grid">
+            
+            <!-- Controls Card -->
+            <div class="card control-card glass-panel">
+                <h2>Commandes</h2>
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <input type="text" id="listNameInput" placeholder="Nom de la liste (ex: PROSPECTION SANS M2)" class="glass-input" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white;">
+                </div>
+                <div class="button-group">
+                    <button id="btnDry" class="btn btn-secondary" onclick="startBot('dry')">
+                        Test (10 items)
+                    </button>
+                    <button id="btnStart" class="btn btn-primary" onclick="startBot('start')">
+                        Lancer Extraction
+                    </button>
+                    <button id="btnStop" class="btn btn-danger" onclick="stopBot()" disabled>
+                        Arrêter
+                    </button>
+                    <button id="btnInput" class="btn btn-action" onclick="sendInput()">
+                        Entrée (Login)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Card -->
+            <div class="card stats-card glass-panel">
+                <h2>Statistiques</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Entreprises</span>
+                        <span class="stat-value" id="statCompanies">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Contacts</span>
+                        <span class="stat-value" id="statContacts">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Réussite</span>
+                        <span class="stat-value" id="statSuccess">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs Terminal -->
+            <div class="card terminal-card glass-panel">
+                <div class="card-header">
+                    <h2>Terminal</h2>
+                    <button class="btn-icon" onclick="clearLogs()">Effacer</button>
+                </div>
+                <div class="terminal-window" id="terminalOutput">
+                    <div class="log-line system">En attente de commandes...</div>
+                </div>
+            </div>
+
+            <!-- Data Preview -->
+            <div class="card data-card glass-panel">
+                <div class="card-header">
+                    <h2>Derniers Contacts Extraits</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-action" onclick="downloadCsv()">CSV</button>
+                        <button class="btn btn-small" onclick="refreshData()">Actualiser</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Entreprise</th>
+                                <th>Téléphone</th>
+                                <th>Contact</th>
+                                <th>Titre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
