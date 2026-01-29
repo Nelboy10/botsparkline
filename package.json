@@ -3,28 +3,57 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
+  "bin": "gui-server.cjs",
   "scripts": {
     "start": "node src/main.js",
     "dry-run": "node src/main.js --dry",
-    "gui": "node gui-server.js",
-    "replay-errors": "node src/main.js --replay"
+    "gui": "node gui-server.cjs",
+    "replay-errors": "node src/main.js --replay",
+    "build-exe": "node build.cjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
+    "cors": "^2.8.6",
     "csv-writer": "^1.6.0",
     "dotenv": "^17.2.3",
-    "playwright": "^1.58.0",
+    "express": "^5.2.1",
+    "open": "^8.4.2",
     "sharp": "^0.34.5",
     "tesseract.js": "^7.0.0",
     "winston": "^3.19.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
+    "pkg": "^5.8.1",
+    "playwright": "^1.58.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "vite": "^7.3.1"
+  },
+  "pkg": {
+    "scripts": [
+      "gui-server.cjs",
+      "src/main.bundle.cjs",
+      "config/**/*.js"
+    ],
+    "assets": [
+      "public/**/*",
+      "config/**/*",
+      "package.json"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-macos-arm64"
+    ],
+    "outputPath": ".",
+    "exclude": [
+      "playwright",
+      "playwright-core"
+    ]
   }
 }
