@@ -38,14 +38,15 @@ function updateStatus(active) {
 async function startBot(mode) {
     try {
         const listName = document.getElementById('listNameInput').value;
+        const godMode = document.getElementById('godModeInput')?.checked;
         const displayList = listName ? listName : "Défaut";
 
-        appendLog(`--- Lancement commande: ${mode} (Liste: ${displayList}) ---`, 'system');
+        appendLog(`--- Lancement commande: ${mode} (Liste: ${displayList})${godMode ? ' [GOD MODE]' : ''} ---`, 'system');
         updateStatus(true);
         const res = await fetch('/api/start', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ mode, listName })
+            body: JSON.stringify({ mode, listName, godMode })
         });
         const data = await res.json();
         if (data.error) throw new Error(data.error);

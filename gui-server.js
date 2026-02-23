@@ -70,13 +70,14 @@ function startServer() {
             return res.status(400).json({ error: 'Bot est déjà en cours' });
         }
 
-        const { mode, listName } = req.body;
+        const { mode, listName, godMode } = req.body;
 
         // 🔹 pkg-safe spawn
         const nodePath = process.execPath;
         const args = ['--worker']; // Signal internal worker mode
 
         if (mode === 'dry') args.push('--dry');
+        if (godMode) args.push('--godmode');
 
         // Arguments passed to worker
         if (listName && listName.trim().length > 0) {

@@ -90,13 +90,14 @@ function startServer() {
             return res.status(400).json({ error: 'Bot est déjà en cours' });
         }
 
-        const { mode, listName } = req.body;
+        const { mode, listName, godMode } = req.body;
 
         // 🔹 MODIFIED: Use fork() instead of spawn() for pkg compatibility
         // fork() correctly handles scripts inside the snapshot
         const args = ['--worker']; // Signal internal worker mode
 
         if (mode === 'dry') args.push('--dry');
+        if (godMode) args.push('--godmode');
 
         // Arguments passed to worker
         if (listName && listName.trim().length > 0) {
