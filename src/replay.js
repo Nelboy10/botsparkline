@@ -4,10 +4,14 @@ import { extractContacts } from './company.js';
 
 const waitRandom = (min, max) => new Promise(resolve => setTimeout(resolve, Math.floor(Math.random() * (max - min + 1)) + min));
 
-export async function replayErrors(page, selectors) {
-    console.log("ETAPE 5 : REPLAY DES ERREURS (MODE RATTRAPAGE)");
+export async function replayErrors(page, selectors, listName = "REPLAY_RECOVERED") {
+    console.log(`ETAPE 5 : REPLAY DES ERREURS (MODE RATTRAPAGE) - Liste: ${listName}`);
     const errorFile = "errors.json";
-    const csvFile = "contacts.csv";
+
+    // On sauvegarde dans le dossier data/lists pour cohérence
+    const csvDir = "data/lists";
+    if (!fs.existsSync(csvDir)) fs.mkdirSync(csvDir, { recursive: true });
+    const csvFile = `${csvDir}/${listName}.csv`;
 
     if (!fs.existsSync(errorFile)) {
         console.log("Aucun fichier errors.json trouvé. Rien à rejouer.");
@@ -24,6 +28,10 @@ export async function replayErrors(page, selectors) {
     let newlySuccess = 0;
     const remainingErrors = [];
 
+    // Headers si fichier n'existe pas
+    const headers = "Entreprise,Telephone,Adresse,Nom Contact 1,Titre Contact 1,Nom Contact 2,Titre Contact 2,Nom Contact 3,Titre Contact 3,Nom Contact 4,Titre Contact 4,Nom Contact 5,Titre Contact 5\n";
+    if (!fs.existsSync(csvFile)) fs.writeFileSync(csvFile, headers);
+
     for (const item of errors) {
         if (!item.url || !item.url.startsWith("http")) {
             console.log(`[SKIP] ${item.name} (Pas d'URL valide)`);
@@ -33,46 +41,36 @@ export async function replayErrors(page, selectors) {
 
         console.log(`[RETRY] ${item.name} (${item.url})...`);
         try {
-            // On ouvre l'URL directement
-            await page.goto(item.url);
-            await page.waitForLoadState('domcontentloaded');
+            await page.goto(item.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
             await waitRandom(1000, 2000);
 
             // On tente l'extraction
             const contacts = await extractContacts(page, selectors);
 
-            if (contacts.length > 0) {
-                // Enregistrement CSV
-                const safeCSV = (str) => (str || "N/A").replace(/,/g, " ").replace(/\n/g, " ");
+            // Enregistrement CSV
+            const safeCSV = (str) => (str || "N/A").replace(/,/g, " ").replace(/\n/g, " ");
 
-                let phone = "N/A"; // On n'a pas l'info de la carte ici, sauf si on scrape la page detail (souvent y'a le tel)
-                // Tentative récup tel sur page détail
-                try {
-                    // Sélecteur générique phone page détail ?
-                    // Souvent c'est le même, ou alors c'est dans le header company
-                    // On laisse N/A pour l'instant ou on tente un grab générique
-                    const bodyText = await page.innerText('body');
-                    const m = bodyText.match(/(?:\+33|0)\s*[1-9](?:[\s.-]*\d{2}){4}/);
-                    if (m) phone = m[0];
-                } catch (e) { }
+            // On essaie de récupérer le tel depuis la page detail si possible
+            let phone = "N/A";
+            try {
+                const bodyText = await page.innerText('body');
+                const m = bodyText.match(/(?:\+33|0)\s*[1-9](?:[\s.-]*\d{2}){4}/);
+                if (m) phone = m[0];
+            } catch (e) { }
 
-                let line = `${safeCSV(item.name)},${safeCSV(phone)},N/A`; // Adresse N/A aussi
-                for (let k = 0; k < 5; k++) {
-                    if (k < contacts.length) {
-                        line += `,${safeCSV(contacts[k].name)},${safeCSV(contacts[k].title)}`;
-                    } else {
-                        line += `,N/A,N/A`;
-                    }
+            let line = `${safeCSV(item.name)},${safeCSV(phone)},N/A`;
+            for (let k = 0; k < 5; k++) {
+                if (k < contacts.length) {
+                    line += `,${safeCSV(contacts[k].name)},${safeCSV(contacts[k].title)}`;
+                } else {
+                    line += `,N/A,N/A`;
                 }
-                line += "\n";
-                fs.appendFileSync(csvFile, line);
-
-                console.log(`   -> SUCCES REPLAY (${contacts.length} contacts)`);
-                newlySuccess++;
-            } else {
-                console.log("   -> ECHEC REPLAY (0 contacts trouvés)");
-                remainingErrors.push(item);
             }
+            line += "\n";
+            fs.appendFileSync(csvFile, line);
+
+            console.log(`   -> SUCCES REPLAY (${contacts.length} contacts)`);
+            newlySuccess++;
 
         } catch (e) {
             console.log(`   -> CRASH REPLAY: ${e.message}`);

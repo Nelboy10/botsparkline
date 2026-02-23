@@ -1,8 +1,9 @@
 {
   "menuLists": "text=Listes",
   "targetListName": "text=PROSPECTION SANS M2",
+  "companiesCounter": "div[name='companies-counter']",
   "companyCard": "[class*='companyCard']",
-  "companyName": "span[class*='ul-name']",
+  "companyName": "span[class*='ol-name']",
   "companyPageName": "h1",
   "companyNumberLabel": "text=Numéro société",
   "companyPhoneLabel": "div[class*='ml-phone']",

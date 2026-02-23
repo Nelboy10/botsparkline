@@ -5,7 +5,6 @@ import path from "path";
 import { execSync } from "child_process";
 import { createRequire } from 'module';
 
-<<<<<<< HEAD
 // Use standard require for pkg trickery
 // In bundled CJS (via esbuild), import.meta may be empty
 const require = createRequire(typeof import.meta !== 'undefined' && import.meta.url ? import.meta.url : `file://${__filename}`);
@@ -40,10 +39,7 @@ try {
 /**
  * Lancement du navigateur Chromium et gestion de session pour Sparklane
  */
-=======
 const IS_RENDER = !!process.env.RENDER;
-
->>>>>>> 8fb882040e5c589408f52d5f276c21120d71e718
 export async function getBrowser() {
   console.log("🚀 Vérification du navigateur Chrome...");
 
@@ -88,15 +84,11 @@ export async function getBrowser() {
   }
 
   const browser = await chromium.launch({
-<<<<<<< HEAD
-    headless: false, // toujours visible pour login manuel
-    executablePath: chromiumExecutable
-=======
-    headless: IS_RENDER,
+    headless: IS_RENDER, // false in local, true in Render
+    executablePath: chromiumExecutable,
     args: IS_RENDER
       ? ["--no-sandbox", "--disable-setuid-sandbox"]
       : []
->>>>>>> 8fb882040e5c589408f52d5f276c21120d71e718
   });
 
   const context = await browser.newContext(
@@ -105,40 +97,27 @@ export async function getBrowser() {
 
   const page = await context.newPage();
 
-  await page.goto("https://predict.sparklane.fr", { timeout: 60000 });
+  await page.goto("https://predict.sparklane.fr", { timeout: 45000, waitUntil: "domcontentloaded" });
 
-<<<<<<< HEAD
-  if (!hasStorage) {
+  // 🔹 MODE LOCAL UNIQUEMENT
+  if (!IS_RENDER && !hasStorage) {
     console.log("🔑 Première connexion -> login manuel requis");
     console.log("Connecte-toi puis appuie sur ENTER ici.");
     await waitForEnter();
 
     await context.storageState({ path: storagePath });
     console.log("💾 Session sauvegardée dans storage.json");
-  } else {
+  } else if (!IS_RENDER && hasStorage) {
     console.log("🔄 Session trouvée -> tentative reconnexion automatique");
     await page.waitForTimeout(3000);
-=======
-  // 🔹 MODE LOCAL UNIQUEMENT
-  if (!IS_RENDER && !hasStorage) {
-    console.log("Première connexion → login manuel requis");
-    console.log("Connecte-toi puis appuie sur ENTER ici.");
-    await waitForEnter();
-
-    await context.storageState({ path: "storage.json" });
-    console.log("Session sauvegardée dans storage.json");
   }
->>>>>>> 8fb882040e5c589408f52d5f276c21120d71e718
 
   // 🔹 MODE LOCAL : session expirée
-  if (!IS_RENDER && hasStorage) {
-    await page.waitForTimeout(3000);
-    if (page.url().includes("/login")) {
-<<<<<<< HEAD
-      console.log("❌ Session expirée -> reconnecte-toi puis ENTER");
-=======
-      console.log("Session expirée → reconnecte-toi puis ENTER");
->>>>>>> 8fb882040e5c589408f52d5f276c21120d71e718
+  if (!IS_RENDER && fs.existsSync(storagePath)) {
+    await page.waitForTimeout(5000); // Laisse plus de temps pour une redirection SSO
+    const currentUrl = page.url();
+    if (currentUrl.includes("/login") || currentUrl.includes("/auth") || currentUrl.includes("sso") || !currentUrl.includes("predict.sparklane.fr")) {
+      console.log("❌ Session expirée ou redirection détectée -> reconnecte-toi complétement dans le navigateur, puis appuie sur ENTER ici.");
       await waitForEnter();
       await context.storageState({ path: storagePath });
       console.log("💾 Session mise à jour");

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "BINDER MAGNETIC",
+    "url": null,
+    "reason": "Item Loop Failed: locator.scrollIntoViewIfNeeded: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[class*=\\'companyCard\\']').nth(206)\u001b[22m\n",
+    "timestamp": "2026-02-10T07:41:49.395Z"
+  },
+  {
+    "name": "INSTITUT DU MONDE ARABE",
+    "url": "https://www.imarabe.org/fr",
+    "reason": "Extraction Failed: page.bringToFront: Target page, context or browser has been closed",
+    "timestamp": "2026-02-11T11:42:38.800Z"
+  },
+  {
+    "name": "IMMUNODIAGNOSTIC SYSTEMS FRANCE",
+    "url": null,
+    "reason": "Extraction Failed: page.bringToFront: Target page, context or browser has been closed",
+    "timestamp": "2026-02-11T11:49:36.307Z"
+  },
+  {
+    "name": "QUINCAILLERIE PORTALET",
+    "url": "https://www.quincaillerieportalet.fr/",
+    "reason": "Extraction Failed: page.bringToFront: Target page, context or browser has been closed",
+    "timestamp": "2026-02-11T12:13:10.264Z"
+  },
+  {
+    "name": "Unknown",
+    "url": null,
+    "reason": "Item Loop Failed: locator.innerText: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[class*=\\'companyCard\\']').first().locator('span[class*=\\'ul-name\\']').first()\u001b[22m\n",
+    "timestamp": "2026-02-19T10:59:48.853Z"
+  },
+  {
+    "name": "CENTRE REGIONAL LUTTE CONTRE LE CANCER",
+    "url": null,
+    "reason": "Extraction Failed: page.innerText: Target page, context or browser has been closed",
+    "timestamp": "2026-02-19T12:43:48.710Z"
+  }
+]

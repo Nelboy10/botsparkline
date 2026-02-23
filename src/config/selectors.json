@@ -2,5 +2,10 @@
   "menuLists": "text=Listes",
   "targetListName": "text=PROSPECTION SANS M2",
   "companyCard": "[class*='companyCard']",
-  "companyName": "span[class*='ul-name']"
+  "companyName": "span[class*='ul-name']",
+  "companyPhoneLabel": "[class*='phone'], [class*='telephone'], span[class*='tel']",
+  "companyAddress": "[class*='address'], [class*='adresse'], span[class*='location']",
+  "contactRow": "[class*='contactCard'], [class*='contact-row'], tr[class*='contact']",
+  "contactName": "span[class*='name'], td[class*='name'], [class*='contact-name']",
+  "contactTitle": "span[class*='job'], span[class*='title'], span[class*='role'], td[class*='title']"
 }
