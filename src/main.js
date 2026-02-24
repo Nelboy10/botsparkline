@@ -93,15 +93,15 @@ if (listIndex !== -1 && listIndex + 1 < args.length) {
 
     // Nettoyage nom pour fichier
     listName = listName.replace(/[^a-zA-Z0-9_\- ]/g, "").trim();
-    console.log(`📂 Liste active : ${listName}`);
-    if (turbo) console.log("🚀 MODE TURBO ACTIVE !");
-    if (godmode) console.log("🌟 GOD MODE (API) ACTIVE !");
+    console.log(` Liste active : ${listName}`);
+    if (turbo) console.log(" MODE TURBO ACTIVE !");
+    if (godmode) console.log(" GOD MODE (API) ACTIVE !");
 
     if (godmode) {
       // Intercepter le Token en arrière-plan
       const token = await interceptToken(page);
       if (!token) {
-        console.error("❌ Echec du God Mode : Impossible de récupérer le token d'API.");
+        console.error("Echec du God Mode : Impossible de récupérer le token d'API.");
         process.exit(1);
       }
 
@@ -109,7 +109,7 @@ if (listIndex !== -1 && listIndex + 1 < args.length) {
       const listId = await getTargetListId(page);
 
       if (!listId) {
-        console.error("❌ Impossible de trouver l'ID de la liste pour le God Mode.");
+        console.error("Impossible de trouver l'ID de la liste pour le God Mode.");
       } else {
         await processCompaniesGodMode(page, token, baseUrl, listId, dryRun, listName);
       }
@@ -120,7 +120,7 @@ if (listIndex !== -1 && listIndex + 1 < args.length) {
   }
 
   if (godmode) {
-    console.log("✅ Terminé. Fermeture du navigateur (God Mode).");
+    console.log(" Terminé. Fermeture du navigateur (God Mode).");
     await browser.close();
     process.exit(0);
   } else {

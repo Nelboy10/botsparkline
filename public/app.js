@@ -73,12 +73,19 @@ async function sendInput() {
 }
 
 function downloadCsv() {
-    window.location.href = '/api/download';
+    const listName = document.getElementById('listNameInput').value.trim();
+    if (listName) {
+        window.location.href = `/api/download?list=${encodeURIComponent(listName)}`;
+    } else {
+        window.location.href = '/api/download';
+    }
 }
 
 async function refreshData() {
     try {
-        const res = await fetch('/api/data');
+        const listName = document.getElementById('listNameInput')?.value.trim();
+        const url = listName ? `/api/data?list=${encodeURIComponent(listName)}` : '/api/data';
+        const res = await fetch(url);
         const { content } = await res.json();
         if (!content) return;
 
@@ -103,14 +110,19 @@ async function refreshData() {
                 const contactTitle = cols[4] && cols[4] !== "N/A" ? cols[4] : "";
 
                 tr.innerHTML = `
-                    <td>${cols[0]}</td>
-                    <td>${cols[1]}</td>
-                    <td>${contactName}</td>
-                    <td>${contactTitle}</td>
+                    <td style="color: white !important;">${cols[0] || 'vide'}</td>
+                    <td style="color: white !important;">${cols[1] || ''}</td>
+                    <td style="color: white !important;">${contactName}</td>
+                    <td style="color: white !important;">${contactTitle}</td>
                 `;
                 dataTable.appendChild(tr);
             }
         });
+
+        // Debug output for user
+        if (latest.length === 0) {
+            dataTable.innerHTML = `<tr><td colspan="4" style="color:red">Aucune donnée trouvée ou extraite (lines: ${lines.length})</td></tr>`;
+        }
 
         // Stats approximation
         document.getElementById('statCompanies').textContent = lines.length;

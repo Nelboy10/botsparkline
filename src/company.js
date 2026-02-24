@@ -319,7 +319,10 @@ export async function processCompaniesGodMode(page, token, baseUrl, listId, dryR
       const maxPages = Math.ceil(totalInList / 100);
       console.log(`🔄 Récupération active via API repérée, estimation: ${maxPages} pages...`);
 
-      for (let p = 1; p <= maxPages; p++) {
+      // On vide allCompanies car on va rescanner depuis la page 0 avec la taille 100 (pour ne pas rater les 90 premiers ni fausser le décompte)
+      allCompanies = [];
+
+      for (let p = 0; p < maxPages; p++) {
         if (reqBody.pageParams) reqBody.pageParams.page = p;
         else if (reqBody.pageId !== undefined) reqBody.pageId = p;
         else if (reqBody.page !== undefined) reqBody.page = p;
@@ -335,7 +338,7 @@ export async function processCompaniesGodMode(page, token, baseUrl, listId, dryR
         const data = res.data;
         if (data && data.companies && data.companies.length > 0) {
           allCompanies.push(...data.companies);
-          console.log(`   📄 Page API ${p} ok : +${data.companies.length} entreprises (Total: ${allCompanies.length}/${totalInList})`);
+          console.log(`   📄 Page API ${p + 1}/${maxPages} ok : +${data.companies.length} entreprises (Total: ${allCompanies.length}/${totalInList})`);
         } else {
           break;
         }
@@ -469,6 +472,16 @@ export async function processCompaniesGodMode(page, token, baseUrl, listId, dryR
           title = ct.functionLabel;
         } else if (ct.jobTitle) {
           title = ct.jobTitle;
+        }
+
+        // --- Extraction des e-mails et téléphones directs enrichis ---
+        if (ct.enrichmentSummary) {
+          if (ct.enrichmentSummary.lastAvailableEmails && ct.enrichmentSummary.lastAvailableEmails.length > 0) {
+            title += ` | ✉️ ${ct.enrichmentSummary.lastAvailableEmails[0]}`;
+          }
+          if (ct.enrichmentSummary.lastAvailablePhones && ct.enrichmentSummary.lastAvailablePhones.length > 0) {
+            title += ` | 📞 ${ct.enrichmentSummary.lastAvailablePhones[0]}`;
+          }
         }
 
         return {

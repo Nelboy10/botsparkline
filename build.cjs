@@ -53,10 +53,7 @@ try {
 console.log("📦 Création des exécutables avec pkg...");
 
 const targets = [
-    { name: 'win', target: 'node18-win-x64', ext: '.exe' },
-    { name: 'linux', target: 'node18-linux-x64', ext: '' },
-    { name: 'macos-intel', target: 'node18-macos-x64', ext: '' },
-    { name: 'macos-arm', target: 'node18-macos-arm64', ext: '' }
+    { name: 'win', target: 'node18-win-x64', ext: '.exe' }
 ];
 
 targets.forEach(t => {

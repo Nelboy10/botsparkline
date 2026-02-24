@@ -163,8 +163,16 @@ function startServer() {
 
     // CSV
     app.get('/api/data', (req, res) => {
-        // 🔹 MODIFIED: Use rootDir for files created at runtime
-        const csvPath = path.join(rootDir, 'contacts.csv');
+        const listName = req.query.list;
+        let csvPath = path.join(rootDir, 'contacts.csv');
+
+        if (listName) {
+            const listPath = path.join(rootDir, 'data', 'lists', `${listName}.csv`);
+            if (fs.existsSync(listPath)) {
+                csvPath = listPath;
+            }
+        }
+
         if (fs.existsSync(csvPath)) {
             const content = fs.readFileSync(csvPath, 'utf-8');
             res.json({ content });
@@ -174,10 +182,20 @@ function startServer() {
     });
 
     app.get('/api/download', (req, res) => {
-        // 🔹 MODIFIED: Use rootDir for files created at runtime
-        const csvPath = path.join(rootDir, 'contacts.csv');
+        const listName = req.query.list;
+        let csvPath = path.join(rootDir, 'contacts.csv');
+        let downloadName = 'contacts.csv';
+
+        if (listName) {
+            const listPath = path.join(rootDir, 'data', 'lists', `${listName}.csv`);
+            if (fs.existsSync(listPath)) {
+                csvPath = listPath;
+                downloadName = `${listName}.csv`;
+            }
+        }
+
         if (fs.existsSync(csvPath)) {
-            res.download(csvPath, 'contacts.csv');
+            res.download(csvPath, downloadName);
         } else {
             res.status(404).send('Fichier non trouvé');
         }
